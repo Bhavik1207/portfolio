@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Bhavik Sharma — AI Learner & Tech Builder</title>
+  <meta name="description" content="Bhavik Sharma's portfolio — AI learner, computer enthusiast, and tech builder from Patiala, India." />
+  <meta name="keywords" content="Bhavik Sharma, AI, portfolio, tech builder, computer specialist, Patiala" />
+  <meta property="og:title" content="Bhavik Sharma — AI Enthusiast & Tech Builder" />
+  <meta property="og:description" content="I build AI agents, assemble hardware, and explore technology." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts: preconnect for zero-latency DNS resolution -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Load only essential weights; display=swap prevents FOIT -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Preload above-the-fold critical assets -->
+  <link rel="preload" as="image" href="/images/ai-agents-3d.webp" fetchpriority="high" />
+
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Lenis smooth scroll (loaded early, small ~7KB) -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader" class="preloader-modern">
+    <div class="preloader-text-wrapper">
+      <span class="preloader-char" style="animation-delay: 0.10s">B</span>
+      <span class="preloader-char" style="animation-delay: 0.15s">H</span>
+      <span class="preloader-char" style="animation-delay: 0.20s">A</span>
+      <span class="preloader-char" style="animation-delay: 0.25s">V</span>
+      <span class="preloader-char" style="animation-delay: 0.30s">I</span>
+      <span class="preloader-char" style="animation-delay: 0.35s">K</span>
+    </div>
+  </div>
+
+  <!-- Custom cursor -->
+  <div id="cursor" class="cursor"></div>
+  <div id="bg-glow"></div>
+
+  <!-- 3D Canvas -->
+  <canvas id="hero-canvas"></canvas>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="navbar">
+    <a href="#hero" class="nav-logo">
+      <span class="logo-b">B</span><span class="logo-s">S</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link" data-text="About">About</a>
+      <a href="#skills" class="nav-link" data-text="Skills">Skills</a>
+      <a href="#projects" class="nav-link" data-text="Projects">Projects</a>
+      <a href="#journey" class="nav-link" data-text="Journey">Journey</a>
+      <a href="#contact" class="nav-link" data-text="Contact">Contact</a>
+    </div>
+    <button id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#skills" class="mobile-link">Skills</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#journey" class="mobile-link">Journey</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          <span>Available for Opportunities</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="hero-line">
+            <span class="hero-word" data-delay="0">Bhavik</span>
+          </span>
+          <span class="hero-line">
+            <span class="hero-word" data-delay="1">Sharma</span>
+          </span>
+        </h1>
+        <p class="hero-subtitle">AI Learner <span class="accent">&</span> Tech Builder</p>
+        <p class="hero-description">I build AI agents, assemble hardware, and explore how technology can solve real problems.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">
+            <span>View My Work</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <span>Get In Touch</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-scroll-indicator">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+      <div class="container">
+        <div class="section-label">
+          <span class="label-number">01</span>
+          <span class="label-line"></span>
+          <span class="label-text">About Me</span>
+        </div>
+        <div class="about-grid">
+          <div class="about-image-wrapper">
+            <div class="about-image-frame">
+              <img src="/images/bhavik.webp" alt="Bhavik Sharma" class="about-image" />
+              <div class="about-image-glow"></div>
+            </div>
+            <div class="about-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Patiala, Punjab, India</span>
+            </div>
+          </div>
+          <div class="about-content">
+            <h2 class="about-heading">
+              Turning ideas into <span class="text-gradient">working projects</span> with <span class="text-gradient">AI and code</span>
+            </h2>
+            <p class="about-text">
+              I am a student from Patiala, Punjab. I recently finished my 12th (Commerce) and am now preparing for college entrance exams. Most of my free time is spent learning about AI and experimenting with new technology.
+            </p>
+            <p class="about-text">
+              I enjoy the "hands-on" side of tech — whether that's setting up an autonomous AI agent to handle tasks or building a PC from scratch. I'm a self-taught builder who likes to understand how things work from the inside out.
+            </p>
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-number" data-count="5">0</span><span class="stat-plus">+</span>
+                <span class="stat-label">AI Agents Built</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-count="3">0</span><span class="stat-plus">+</span>
+                <span class="stat-label">Projects Shipped</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-count="1">0</span>
+                <span class="stat-label">PC Built from Scratch</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills">
+      <div class="container">
+        <div class="section-label">
+          <span class="label-number">02</span>
+          <span class="label-line"></span>
+          <span class="label-text">Expertise</span>
+        </div>
+        <h2 class="section-title">What I <span class="text-gradient">Bring to the Table</span></h2>
+        <div class="skills-sticky-layout" id="skills-sticky">
+          <div class="skills-sticky-left">
+            <div class="skill-card skill-scroll-block" data-index="0">
+              <div class="skill-icon">
+                <img src="/images/ai_skill_glow.webp" alt="AI" />
+              </div>
+              <h3 class="skill-title">AI Agent Systems</h3>
+              <p class="skill-desc">Setting up autonomous agents using OpenClaw and Gemini to automate tasks and connect with Telegram.</p>
+              <div class="skill-tags">
+                <span class="tag">OpenClaw</span>
+                <span class="tag">Gemini API</span>
+                <span class="tag">CLI Auth</span>
+                <span class="tag">Sub-Agents</span>
+              </div>
+            </div>
+            
+            <div class="skill-card skill-scroll-block" data-index="1">
+              <div class="skill-icon">
+                <img src="/images/hardware_skill_glow.webp" alt="Hardware" />
+              </div>
+              <h3 class="skill-title">Computer Hardware</h3>
+              <p class="skill-desc">Building and maintaining PCs, troubleshooting software issues, and optimizing Windows for better speed.</p>
+              <div class="skill-tags">
+                <span class="tag">PC Building</span>
+                <span class="tag">OS Maintenance</span>
+                <span class="tag">Troubleshooting</span>
+              </div>
+            </div>
+
+            <div class="skill-card skill-scroll-block" data-index="2">
+              <div class="skill-icon">
+                <img src="/images/web_skill_glow.webp" alt="Web" />
+              </div>
+              <h3 class="skill-title">Web & Coding</h3>
+              <p class="skill-desc">Creating clean websites using modern tools and learning how to host and manage them online.</p>
+              <div class="skill-tags">
+                <span class="tag">Vibe Coding</span>
+                <span class="tag">Web Hosting</span>
+                <span class="tag">Domains</span>
+                <span class="tag">Python</span>
+              </div>
+            </div>
+
+            <div class="skill-card skill-scroll-block" data-index="3">
+              <div class="skill-icon">
+                <img src="/images/ecommerce_skill_glow.webp" alt="E-Commerce" />
+              </div>
+              <h3 class="skill-title">E-Commerce</h3>
+              <p class="skill-desc">Ran a small business on Amazon where I handled product research, inventory, and customer service to learn how online business works.</p>
+              <div class="skill-tags">
+                <span class="tag">Amazon FBA</span>
+                <span class="tag">Business Strategy</span>
+                <span class="tag">Scaling</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skills-sticky-right">
+            <div class="sticky-visual-graphic" id="sticky-visual-graphic">
+              <div class="iphone-screen">
+                <!-- Full-bleed background image -->
+                <div class="graphic-icon" id="graphic-icon">
+                  <img src="/images/ai_skill_glow.webp" alt="AI Agents" id="graphic-icon-img" />
+                </div>
+                <!-- Dark gradient overlay for text legibility -->
+                <div class="iphone-screen-overlay"></div>
+                <!-- Text positioned at bottom over overlay -->
+                <div class="iphone-screen-text">
+                  <h4 class="graphic-title" id="graphic-title">AI Agent Systems</h4>
+                  <p class="graphic-subtitle" id="graphic-subtitle">Automation</p>
+                </div>
+              </div>
+              <div class="iphone-home-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+      <div class="container">
+        <div class="section-label">
+          <span class="label-number">03</span>
+          <span class="label-line"></span>
+          <span class="label-text">Featured Work</span>
+        </div>
+        <h2 class="section-title">Things I've <span class="text-gradient">Built</span></h2>
+
+        <div class="projects-bento-grid">
+            <!-- Project 1 — Featured (full width) -->
+            <div class="project-bento-card project-bento-featured">
+              <div class="project-bento-image">
+                <img src="/images/ai-agents-3d.webp" alt="AI Agent Ecosystem" loading="eager" />
+                <div class="project-bento-badge">Featured Project</div>
+              </div>
+              <div class="project-bento-info">
+                <div class="project-bento-number">01 — Main Project</div>
+                <h3 class="project-bento-name">Autonomous AI Agents</h3>
+                <p class="project-bento-desc">
+                  I built a system where different AI agents talk to each other to complete tasks. I used OpenClaw and Gemini, and connected it to Telegram so I can control it from my phone.
+                </p>
+                <div class="project-bento-tech">
+                  <span>OpenClaw</span>
+                  <span>Gemini API</span>
+                  <span>Telegram Bot</span>
+                  <span>Python</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-bento-card project-bento-small">
+              <div class="project-bento-image">
+                <img src="/images/amazon-2d.webp" alt="Amazon E-Commerce" loading="lazy" />
+              </div>
+              <div class="project-bento-info">
+                <div class="project-bento-number">02</div>
+                <h3 class="project-bento-name">Amazon E-Commerce</h3>
+                <p class="project-bento-desc">
+                  Ran a small business handling product research, inventory and customer service to learn how online business works.
+                </p>
+                <div class="project-bento-tech">
+                  <span>Amazon Seller Central</span>
+                  <span>Business Strategy</span>
+                  <span>E-Commerce</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-bento-card project-bento-small">
+              <div class="project-bento-image">
+                <img src="/images/pc-build-3d.webp" alt="Custom PC Build" loading="lazy" />
+              </div>
+              <div class="project-bento-info">
+                <div class="project-bento-number">03</div>
+                <h3 class="project-bento-name">Custom PC Build</h3>
+                <p class="project-bento-desc">
+                  Picked out parts and assembled a complete desktop PC. Handled OS installation, BIOS setup and performance optimization.
+                </p>
+                <div class="project-bento-tech">
+                  <span>Hardware Assembly</span>
+                  <span>BIOS Config</span>
+                  <span>OS Installation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+ 
+    <!-- Certificates Section -->
+    <section id="certificates" class="section certificates">
+      <div class="container">
+        <div class="section-label">
+          <span class="label-number">04</span>
+          <span class="label-line"></span>
+          <span class="label-text">Certifications</span>
+        </div>
+        <h2 class="section-title">Verified <span class="text-gradient">Credentials</span></h2>
+      </div>
+      
+      <div class="certificates-marquee">
+        <div class="marquee-track">
+          <!-- Card 1 -->
+          <div class="cert-card moonpay-style">
+            <div class="cert-header">
+              <div class="cert-avatar-wrapper" style="background: white;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="cert-avatar" style="object-fit: contain; padding: 10px;" />
+              </div>
+              <div class="cert-meta">
+                <h3 class="cert-name">AI Fundamentals</h3>
+                <p class="cert-issuer">Google</p>
+              </div>
+              <div class="cert-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-image-showcase">
+                <img src="/images/coursera_cert.webp" alt="Google AI Fundamentals Certificate" class="cert-full-image" />
+              </div>
+            </div>
+            <div class="cert-footer">
+              <div class="cert-rating">
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
+              <a href="https://www.coursera.org/account/accomplishments/records/82UV0MX0XVRX" target="_blank" class="cert-link-moonpay">Verified on Coursera</a>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="cert-card moonpay-style">
+            <div class="cert-header">
+              <div class="cert-avatar-wrapper" style="background: white;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Tata_logo.svg" alt="Tata Group" class="cert-avatar" style="object-fit: contain; padding: 10px;" />
+              </div>
+              <div class="cert-meta">
+                <h3 class="cert-name">GenAI Data Analytics</h3>
+                <p class="cert-issuer">Tata Group & Forage</p>
+              </div>
+              <div class="cert-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-image-showcase">
+                <img src="/images/tata_cert.webp" alt="Tata GenAI Data Analytics Certificate" class="cert-full-image" />
+              </div>
+            </div>
+            <div class="cert-footer">
+              <div class="cert-rating">
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
+              <a href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_69db7b9541a358beb27245dc_1776002315799_completion_certificate.pdf" target="_blank" class="cert-link-moonpay">Verified on Forage</a>
+            </div>
+          </div>
+          <!-- DUPLICATE SET 1 -->
+          <div class="cert-card moonpay-style">
+            <div class="cert-header">
+              <div class="cert-avatar-wrapper" style="background: white;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="cert-avatar" style="object-fit: contain; padding: 10px;" />
+              </div>
+              <div class="cert-meta">
+                <h3 class="cert-name">AI Fundamentals</h3>
+                <p class="cert-issuer">Google</p>
+              </div>
+              <div class="cert-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-image-showcase">
+                <img src="/images/coursera_cert.webp" alt="Google AI Fundamentals Certificate" class="cert-full-image" />
+              </div>
+            </div>
+            <div class="cert-footer">
+              <div class="cert-rating">
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
+              <a href="https://www.coursera.org/account/accomplishments/records/82UV0MX0XVRX" target="_blank" class="cert-link-moonpay">Verified on Coursera</a>
+            </div>
+          </div>
+          <div class="cert-card moonpay-style">
+            <div class="cert-header">
+              <div class="cert-avatar-wrapper" style="background: white;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Tata_logo.svg" alt="Tata Group" class="cert-avatar" style="object-fit: contain; padding: 10px;" />
+              </div>
+              <div class="cert-meta">
+                <h3 class="cert-name">GenAI Data Analytics</h3>
+                <p class="cert-issuer">Tata Group & Forage</p>
+              </div>
+              <div class="cert-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-image-showcase">
+                <img src="/images/tata_cert.webp" alt="Tata GenAI Data Analytics Certificate" class="cert-full-image" />
+              </div>
+            </div>
+            <div class="cert-footer">
+              <div class="cert-rating">
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
+              <a href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_69db7b9541a358beb27245dc_1776002315799_completion_certificate.pdf" target="_blank" class="cert-link-moonpay">Verified on Forage</a>
+            </div>
+          </div>
+          <!-- DUPLICATE SET 2 -->
+          <div class="cert-card moonpay-style">
+            <div class="cert-header">
+              <div class="cert-avatar-wrapper" style="background: white;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="cert-avatar" style="object-fit: contain; padding: 10px;" />
+              </div>
+              <div class="cert-meta">
+                <h3 class="cert-name">AI Fundamentals</h3>
+                <p class="cert-issuer">Google</p>
+              </div>
+              <div class="cert-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-image-showcase">
+                <img src="/images/coursera_cert.webp" alt="Google AI Fundamentals Certificate" class="cert-full-image" />
+              </div>
+            </div>
+            <div class="cert-footer">
+              <div class="cert-rating">
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
+              <a href="https://www.coursera.org/account/accomplishments/records/82UV0MX0XVRX" target="_blank" class="cert-link-moonpay">Verified on Coursera</a>
+            </div>
+          </div>
+          <div class="cert-card moonpay-style">
+            <div class="cert-header">
+              <div class="cert-avatar-wrapper" style="background: white;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Tata_logo.svg" alt="Tata Group" class="cert-avatar" style="object-fit: contain; padding: 10px;" />
+              </div>
+              <div class="cert-meta">
+                <h3 class="cert-name">GenAI Data Analytics</h3>
+                <p class="cert-issuer">Tata Group & Forage</p>
+              </div>
+              <div class="cert-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-image-showcase">
+                <img src="/images/tata_cert.webp" alt="Tata GenAI Data Analytics Certificate" class="cert-full-image" />
+              </div>
+            </div>
+            <div class="cert-footer">
+              <div class="cert-rating">
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
+              <a href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_69db7b9541a358beb27245dc_1776002315799_completion_certificate.pdf" target="_blank" class="cert-link-moonpay">Verified on Forage</a>
+            </div>
+          </div>
+          <!-- DUPLICATE SET 3 -->
+          <div class="cert-card moonpay-style">
+            <div class="cert-header">
+              <div class="cert-avatar-wrapper" style="background: white;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="cert-avatar" style="object-fit: contain; padding: 10px;" />
+              </div>
+              <div class="cert-meta">
+                <h3 class="cert-name">AI Fundamentals</h3>
+                <p class="cert-issuer">Google</p>
+              </div>
+              <div class="cert-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-image-showcase">
+                <img src="/images/coursera_cert.webp" alt="Google AI Fundamentals Certificate" class="cert-full-image" />
+              </div>
+            </div>
+            <div class="cert-footer">
+              <div class="cert-rating">
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
+              <a href="https://www.coursera.org/account/accomplishments/records/82UV0MX0XVRX" target="_blank" class="cert-link-moonpay">Verified on Coursera</a>
+            </div>
+          </div>
+          <div class="cert-card moonpay-style">
+            <div class="cert-header">
+              <div class="cert-avatar-wrapper" style="background: white;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Tata_logo.svg" alt="Tata Group" class="cert-avatar" style="object-fit: contain; padding: 10px;" />
+              </div>
+              <div class="cert-meta">
+                <h3 class="cert-name">GenAI Data Analytics</h3>
+                <p class="cert-issuer">Tata Group & Forage</p>
+              </div>
+              <div class="cert-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+            </div>
+            <div class="cert-body">
+              <div class="cert-image-showcase">
+                <img src="/images/tata_cert.webp" alt="Tata GenAI Data Analytics Certificate" class="cert-full-image" />
+              </div>
+            </div>
+            <div class="cert-footer">
+              <div class="cert-rating">
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg width="16" height="16" fill="#facc15" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
+              <a href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_69db7b9541a358beb27245dc_1776002315799_completion_certificate.pdf" target="_blank" class="cert-link-moonpay">Verified on Forage</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey/Timeline Section -->
+    <section id="journey" class="section journey">
+      <div class="container">
+        <div class="section-label">
+          <span class="label-number">05</span>
+          <span class="label-line"></span>
+          <span class="label-text">My Journey</span>
+        </div>
+        <h2 class="section-title">The Path <span class="text-gradient">So Far</span></h2>
+        <div class="milestones-grid">
+
+          <div class="milestone-card">
+            <img src="/images/journey_ai_bg.webp" alt="" class="milestone-card-bg" aria-hidden="true" />
+            <div class="milestone-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93"/><circle cx="12" cy="14" r="3"/><path d="M6.5 17.5 4 22l2.5-.5L7 24l2.5-4.5"/><path d="M17.5 17.5 20 22l-2.5-.5L17 24l-2.5-4.5"/><path d="M15 6a4 4 0 0 1 0 8"/><path d="M9 6a4 4 0 0 0 0 8"/></svg>
+            </div>
+            <span class="milestone-status active">Active</span>
+            <h3 class="milestone-title">AI Agent Development</h3>
+            <p class="milestone-desc">Learned how to build autonomous AI systems that use Gemini and OpenClaw to automate tasks.</p>
+            <div class="milestone-tags">
+              <span>OpenClaw</span>
+              <span>Gemini API</span>
+              <span>Multi-Agent</span>
+            </div>
+          </div>
+
+          <div class="milestone-card">
+            <img src="/images/journey_web_bg.webp" alt="" class="milestone-card-bg" aria-hidden="true" />
+            <div class="milestone-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+            </div>
+            <span class="milestone-status active">Active</span>
+            <h3 class="milestone-title">Web Development</h3>
+            <p class="milestone-desc">Learning modern web development through "vibe coding" and AI tools. Understanding how to host and manage live websites.</p>
+            <div class="milestone-tags">
+              <span>Vite</span>
+              <span>Three.js</span>
+              <span>Deployment</span>
+            </div>
+          </div>
+
+          <div class="milestone-card">
+            <img src="/images/journey_ecommerce_bg.webp" alt="" class="milestone-card-bg" aria-hidden="true" />
+            <div class="milestone-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <span class="milestone-status completed">Completed</span>
+            <h3 class="milestone-title">Amazon E-Commerce</h3>
+            <p class="milestone-desc">Managed an operational Amazon business, learning about digital sales, inventory, and customer service.</p>
+            <div class="milestone-tags">
+              <span>Amazon Seller</span>
+              <span>Business</span>
+              <span>Scaling</span>
+            </div>
+          </div>
+
+          <div class="milestone-card">
+            <img src="/images/journey_hardware_bg.webp" alt="" class="milestone-card-bg" aria-hidden="true" />
+            <div class="milestone-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+            </div>
+            <span class="milestone-status completed">Completed</span>
+            <h3 class="milestone-title">Custom PC Build</h3>
+            <p class="milestone-desc">Assembled a complete desktop PC from scratch, learning about hardware compatibility and system setup.</p>
+            <div class="milestone-tags">
+              <span>Hardware</span>
+              <span>BIOS</span>
+              <span>Optimization</span>
+            </div>
+          </div>
+
+          <div class="milestone-card milestone-card-wide">
+            <img src="/images/journey_web_bg.webp" alt="" class="milestone-card-bg" aria-hidden="true" />
+            <div class="milestone-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+            </div>
+            <span class="milestone-status completed">Completed</span>
+            <h3 class="milestone-title">12th Commerce & CS</h3>
+            <p class="milestone-desc">Finished school in the Commerce stream while studying Computer Science. Built a foundation in Python and logical thinking.</p>
+            <div class="milestone-tags">
+              <span>Python</span>
+              <span>Computer Science</span>
+              <span>Commerce</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <div class="section-label">
+          <span class="label-number">06</span>
+          <span class="label-line"></span>
+          <span class="label-text">Get in Touch</span>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-left">
+            <h2 class="contact-heading">Let's build something <span class="text-gradient">amazing</span> together.</h2>
+            <p class="contact-desc">If you have a question or just want to talk tech, feel free to reach out.</p>
+            <div class="contact-links">
+              <a href="mailto:bhaviksharma11th@gmail.com" class="contact-link" id="contact-email">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,7 12,13 2,7"/></svg>
+                <span>bhaviksharma11th@gmail.com</span>
+              </a>
+              <a href="https://www.linkedin.com/in/bhavik-sharma-9565103b5/" target="_blank" class="contact-link" id="contact-linkedin">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                <span>LinkedIn Profile</span>
+              </a>
+              <a href="#" class="contact-link" id="contact-location">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Patiala, Punjab, India</span>
+              </a>
+            </div>
+          </div>
+          <div class="contact-right">
+            <form id="contact-form" class="contact-form" name="contact">
+              <div class="form-group">
+                <input type="text" id="form-name" name="name" required placeholder=" " />
+                <label for="form-name">Your Name</label>
+                <div class="form-line"></div>
+              </div>
+              <div class="form-group">
+                <input type="email" id="form-email" name="email" required placeholder=" " />
+                <label for="form-email">Your Email</label>
+                <div class="form-line"></div>
+              </div>
+              <div class="form-group">
+                <textarea id="form-message" name="message" rows="4" required placeholder=" "></textarea>
+                <label for="form-message">Your Message</label>
+                <div class="form-line"></div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-submit" id="form-submit">
+                <span>Send Message</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span class="logo-b">B</span><span class="logo-s">S</span>
+        </div>
+        <p class="footer-text">Designed & Built by Bhavik Sharma</p>
+        <p class="footer-year">&copy; 2026 — All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
