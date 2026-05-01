@@ -570,29 +570,31 @@ const graphicIcon = document.getElementById('graphic-icon');
 const graphicTitle = document.getElementById('graphic-title');
 
 // Define the data for the sticky visual
+const basePath = import.meta.env.BASE_URL;
+
 const skillsData = [
   {
     title: 'AI Agent Systems',
     subtitle: 'Automation',
-    iconSrc: '/images/ai_skill_glow.webp',
+    iconSrc: `${basePath}images/ai_skill_glow.webp`,
     iconAlt: 'AI Agents'
   },
   {
     title: 'Computer Hardware',
     subtitle: 'Tech Specialist',
-    iconSrc: '/images/hardware_skill_glow.webp',
+    iconSrc: `${basePath}images/hardware_skill_glow.webp`,
     iconAlt: 'Hardware'
   },
   {
     title: 'Web & Coding',
     subtitle: 'Developer',
-    iconSrc: '/images/web_skill_glow.webp',
+    iconSrc: `${basePath}images/web_skill_glow.webp`,
     iconAlt: 'Web Development'
   },
   {
     title: 'E-Commerce',
     subtitle: 'Business',
-    iconSrc: '/images/ecommerce_skill_glow.webp',
+    iconSrc: `${basePath}images/ecommerce_skill_glow.webp`,
     iconAlt: 'E-Commerce'
   }
 ];
