@@ -30,19 +30,23 @@ gsap.ticker.lagSmoothing(0);
 /* ═══════════════════════════════════════════════════
    1. PRELOADER
    ═══════════════════════════════════════════════════ */
+const preloader = document.getElementById('preloader');
+let dismissed = false;
+
+function dismissPreloader() {
+  if (dismissed) return;
+  dismissed = true;
+  if (preloader) preloader.classList.add('hidden');
+  initHeroAnimations();
+}
+
+// 1. Try to wait for full page load, then dismiss smoothly
 window.addEventListener('load', () => {
-  const preloader = document.getElementById('preloader');
-  let dismissed = false;
-  function dismissPreloader() {
-    if (dismissed) return;
-    dismissed = true;
-    preloader.classList.add('hidden');
-    initHeroAnimations();
-  }
   setTimeout(dismissPreloader, 800);
-  // Hard fallback — guarantees preloader ALWAYS dismisses
-  setTimeout(dismissPreloader, 2000);
 });
+
+// 2. HARD FALLBACK: If load event gets stuck (e.g. slow image), force dismiss after 2 seconds
+setTimeout(dismissPreloader, 2000);
 
 /* ═══════════════════════════════════════════════════
    2. CUSTOM CURSOR
