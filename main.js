@@ -425,6 +425,9 @@ function initHeroAnimations() {
     });
 }
 
+// Call hero animations immediately since we removed the preloader
+initHeroAnimations();
+
 /* ═══════════════════════════════════════════════════
    6. SCROLL ANIMATIONS (FRAME-BY-FRAME SCRUBBING)
    ═══════════════════════════════════════════════════ */
