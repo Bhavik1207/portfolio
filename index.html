@@ -40,6 +40,17 @@
       <span class="preloader-char" style="animation-delay: 0.35s">K</span>
     </div>
   </div>
+  
+  <!-- ULTIMATE FALLBACK: Ensures preloader disappears even if main script completely fails -->
+  <script>
+    setTimeout(function() {
+      var p = document.getElementById('preloader');
+      if (p && !p.classList.contains('hidden')) {
+        p.classList.add('hidden');
+        console.warn("Preloader was removed by the ultimate fallback script.");
+      }
+    }, 2500);
+  </script>
 
   <!-- Custom cursor -->
   <div id="cursor" class="cursor"></div>

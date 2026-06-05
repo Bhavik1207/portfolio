@@ -9,23 +9,32 @@ ScrollTrigger.config({
 });
 
 /* ── Lenis Smooth Scroll Initialization ── */
-const lenis = new Lenis({
-  duration: 1.2,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  smoothWheel: true,
-  wheelMultiplier: 1,
-  touchMultiplier: 2,
-  infinite: false,
-});
+let lenis;
+try {
+  if (typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
+    });
 
-// Sync scrollTrigger with Lenis
-lenis.on('scroll', ScrollTrigger.update);
+    // Sync scrollTrigger with Lenis
+    lenis.on('scroll', ScrollTrigger.update);
 
-gsap.ticker.add((time) => {
-  lenis.raf(time * 1000);
-});
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
 
-gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    console.warn("Lenis smooth scroll not found. Falling back to native scrolling.");
+  }
+} catch (error) {
+  console.error("Lenis initialization error:", error);
+}
 
 /* ═══════════════════════════════════════════════════
    1. PRELOADER
