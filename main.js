@@ -414,12 +414,12 @@ document.querySelectorAll('.mobile-link').forEach(link => {
 function initHeroAnimations() {
   const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
 
-  tl.to('.hero-tag', { opacity: 1, y: 0, duration: 1, delay: 0.2 })
-    .to('.hero-word', { opacity: 1, y: 0, duration: 1.2, stagger: 0.15 }, '-=0.6')
-    .to('.hero-subtitle', { opacity: 1, y: 0, duration: 1 }, '-=0.8')
-    .to('.hero-description', { opacity: 1, y: 0, duration: 1 }, '-=0.7')
-    .to('.hero-cta', { opacity: 1, y: 0, duration: 1 }, '-=0.6')
-    .to('.hero-scroll-indicator', { opacity: 1, duration: 1 }, '-=0.4')
+  tl.from('.hero-tag', { opacity: 0, y: 20, duration: 1, delay: 0.2 })
+    .from('.hero-word', { opacity: 0, y: 40, duration: 1.2, stagger: 0.15 }, '-=0.6')
+    .from('.hero-subtitle', { opacity: 0, y: 20, duration: 1 }, '-=0.8')
+    .from('.hero-description', { opacity: 0, y: 20, duration: 1 }, '-=0.7')
+    .from('.hero-cta', { opacity: 0, y: 20, duration: 1 }, '-=0.6')
+    .from('.hero-scroll-indicator', { opacity: 0, duration: 1 }, '-=0.4')
     .add(() => {
       ScrollTrigger.refresh();
     });

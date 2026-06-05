@@ -398,8 +398,8 @@ body:hover #bg-glow {
   font-size: 13px;
   color: var(--text-secondary);
   margin-bottom: 32px;
-  opacity: 0;
-  transform: translateY(20px);
+  
+  
 }
 
 .hero-tag-dot {
@@ -431,7 +431,7 @@ body:hover #bg-glow {
 
 .hero-word {
   display: inline-block;
-  opacity: 0;
+  
   transform: translateY(100%);
 }
 
@@ -441,8 +441,8 @@ body:hover #bg-glow {
   font-weight: 300;
   color: var(--text-secondary);
   margin-bottom: 20px;
-  opacity: 0;
-  transform: translateY(20px);
+  
+  
   letter-spacing: -0.5px;
 }
 
@@ -461,16 +461,16 @@ body:hover #bg-glow {
   max-width: 520px;
   line-height: 1.7;
   margin-bottom: 40px;
-  opacity: 0;
-  transform: translateY(20px);
+  
+  
 }
 
 .hero-cta {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(20px);
+  
+  
 }
 
 /* Buttons */
@@ -550,7 +550,7 @@ body:hover #bg-glow {
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  opacity: 0;
+  
 }
 
 .scroll-line {
