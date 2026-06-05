@@ -514,50 +514,25 @@ gsap.utils.toArray('.stat-number').forEach(num => {
   });
 });
 
-// ── Skills — Stacking Cards Animation ──
-const skillsHorizontal = document.getElementById('skills-horizontal');
-if (skillsHorizontal) {
-  const cards = gsap.utils.toArray('.skills-h-card');
-  if (cards.length > 0) {
-    // Set initial state for progressive enhancement fallback: 
-    // If JS runs, hide all cards except the first one to the right
-    gsap.set(cards, { xPercent: 120, opacity: 0 });
-    gsap.set(cards[0], { xPercent: 0, opacity: 1 });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: skillsHorizontal,
-        start: 'top 15%', // Pin when section is near top
-        end: () => `+=${cards.length * 800}`, // Long scroll for smoothness
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1
+// ── Skills — Split Layout Scroll Animation ──
+const skillsCards = gsap.utils.toArray('.skills-list-card');
+if (skillsCards.length > 0) {
+  skillsCards.forEach((card) => {
+    gsap.fromTo(card, 
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, 
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse'
+        }
       }
-    });
-
-    cards.forEach((card, i) => {
-      if (i === 0) return; // First card is already in place
-      
-      // Animate current card in
-      tl.to(card, {
-        xPercent: 0,
-        opacity: 1,
-        ease: 'power2.out',
-        duration: 1
-      });
-      
-      // Scale down and fade out previous cards to create depth
-      for (let j = 0; j < i; j++) {
-        tl.to(cards[j], {
-          scale: 1 - (i - j) * 0.05,
-          opacity: 1 - (i - j) * 0.3,
-          yPercent: -(i - j) * 2, // Push slightly up
-          ease: 'power2.out',
-          duration: 1
-        }, "<");
-      }
-    });
-  }
+    );
+  });
 }
 
 // ── Projects Section — Bento Grid (no horizontal scroll needed) ──

@@ -766,97 +766,90 @@ body:hover #bg-glow {
   margin-top: 6px;
 }
 
-/* ── Skills — Horizontal Scroll Cards ── */
-.skills-horizontal-section {
-  position: relative;
-  overflow: hidden;
-}
-
-.skills-horizontal-track { position: relative; width: 100%; height: 500px; display: flex; justify-content: center; align-items: center; }
-
-.skills-h-card { width: 400px; max-width: 90vw; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 28px; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); overflow: hidden; position: absolute; transform-origin: center center; }
-
-.skills-h-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--accent-gradient);
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-.skills-h-card:hover {
-  border-color: rgba(124, 58, 237, 0.35);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(124, 58, 237, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  transform: translateY(-6px);
-}
-
-.skills-h-card:hover::before {
-  opacity: 1;
-}
-
-.skills-h-card-inner {
-  padding: 40px;
-}
-
-.skill-icon {
-  width: 72px;
-  height: 72px;
+/* ── Skills — Split Layout (aBetterLou Style) ── */
+.skills-split-layout {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  background: rgba(124, 58, 237, 0.06);
-  border: 1px solid rgba(124, 58, 237, 0.15);
-  margin-bottom: 24px;
-  overflow: hidden;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10%;
   position: relative;
+  width: 100%;
 }
 
-/* Glow image fills icon box with screen blend */
-.skill-icon img {
-  width: 72px;
-  height: 72px;
-  object-fit: cover;
-  mix-blend-mode: screen;
-  filter: brightness(1.1) saturate(1.15);
-  transition: transform 0.5s var(--ease-out-expo);
+.skills-split-left {
+  width: 40%;
+  position: sticky;
+  top: 35vh; /* Keep it pinned in center view */
 }
 
-.skill-scroll-block:hover .skill-icon img,
-.skill-scroll-block.active .skill-icon img {
-  transform: scale(1.08);
+.skills-split-left .section-title {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  margin-top: 20px;
+  letter-spacing: -1px;
 }
 
-.skill-icon svg {
-  width: 28px;
-  height: 28px;
-  stroke: var(--accent-secondary);
+.skills-split-right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  padding-bottom: 20vh;
+}
+
+.skills-list-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 50px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.skills-list-card:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2), 0 0 40px rgba(124, 58, 237, 0.1);
+}
+
+.skill-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
 }
 
 .skill-title {
   font-family: var(--font-heading);
-  font-size: 24px;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.skill-number {
+  background: var(--accent-primary);
+  color: #fff;
   font-weight: 600;
-  margin-bottom: 16px;
-  letter-spacing: -0.3px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: var(--font-mono);
 }
 
 .skill-desc {
-  font-size: 16px;
+  font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.7;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .tag {
@@ -864,9 +857,31 @@ body:hover #bg-glow {
   border-radius: 100px;
   font-size: 13px;
   font-weight: 500;
-  color: var(--accent-secondary);
-  background: rgba(124, 58, 237, 0.1);
-  border: 1px solid rgba(124, 58, 237, 0.15);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 968px) {
+  .skills-split-layout {
+    flex-direction: column;
+    gap: 60px;
+  }
+  .skills-split-left {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+  .skills-split-right {
+    width: 100%;
+    gap: 40px;
+  }
+  .skills-list-card {
+    padding: 30px;
+  }
+  .skills-split-left .section-title {
+    font-size: clamp(2.5rem, 8vw, 3rem);
+  }
 }
 
 /* ── Projects Section — Premium Bento Grid ── */
