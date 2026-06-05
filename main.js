@@ -22,7 +22,7 @@ ScrollTrigger.config({
   ignoreMobileResize: true 
 });
 
-/* ── Lenis Smooth Scroll Initialization ── */
+/*  */
 let lenis;
 try {
   if (typeof Lenis !== 'undefined') {
@@ -50,9 +50,6 @@ try {
   console.error("Lenis initialization error:", error);
 }
 
-/* ═══════════════════════════════════════════════════
-   1. PRELOADER
-   ═══════════════════════════════════════════════════ */
 const preloader = document.getElementById('preloader');
 let dismissed = false;
 
@@ -71,9 +68,6 @@ window.addEventListener('load', () => {
 // 2. HARD FALLBACK: If load event gets stuck (e.g. slow image), force dismiss after 2 seconds
 setTimeout(dismissPreloader, 2000);
 
-/* ═══════════════════════════════════════════════════
-   2. CUSTOM CURSOR
-   ═══════════════════════════════════════════════════ */
 const cursor = document.getElementById('cursor');
 const bgGlow = document.getElementById('bg-glow');
 let mouseX = 0, mouseY = 0;
@@ -106,9 +100,6 @@ function animateCursor() {
 }
 animateCursor();
 
-/* ═══════════════════════════════════════════════════
-   3. THREE.JS — SPACE SPHERE (INFRACORP-STYLE)
-   ═══════════════════════════════════════════════════ */
 const canvas = document.getElementById('hero-canvas');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -116,7 +107,7 @@ const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
-// ─── Particle Sphere (planet viewed from space) ───
+
 const sphereRadius = 2.5;
 const sphereParticleCount = 1200;
 const spherePositions = new Float32Array(sphereParticleCount * 3);
@@ -208,7 +199,7 @@ const sphereMaterial = new THREE.ShaderMaterial({
 const sphere = new THREE.Points(sphereGeometry, sphereMaterial);
 scene.add(sphere);
 
-// ─── Orbital rings ───
+
 function createOrbitRing(radius, particleCount, color, speed) {
   const ringPositions = new Float32Array(particleCount * 3);
   const ringSizes = new Float32Array(particleCount);
@@ -265,7 +256,7 @@ ring2.rotation.x = -0.5;
 ring2.rotation.z = -0.3;
 scene.add(ring2);
 
-// ─── Background stars ───
+
 const starCount = 300;
 const starPositions = new Float32Array(starCount * 3);
 const starSizes = new Float32Array(starCount);
@@ -287,7 +278,7 @@ const starMat = new THREE.PointsMaterial({
 const stars = new THREE.Points(starGeo, starMat);
 scene.add(stars);
 
-// ─── Sphere glow aura ───
+
 const glowGeo = new THREE.SphereGeometry(sphereRadius * 1.3, 32, 32);
 const glowMat = new THREE.ShaderMaterial({
   uniforms: {
@@ -321,8 +312,6 @@ const glowMat = new THREE.ShaderMaterial({
 });
 const glowMesh = new THREE.Mesh(glowGeo, glowMat);
 scene.add(glowMesh);
-
-
 
 // Position sphere to the left like Infracorp
 sphere.position.x = -5;
@@ -383,9 +372,6 @@ window.addEventListener('scroll', () => {
   canvas.style.opacity = opacity;
 });
 
-/* ═══════════════════════════════════════════════════
-   4. NAVIGATION
-   ═══════════════════════════════════════════════════ */
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('nav-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -408,9 +394,6 @@ document.querySelectorAll('.mobile-link').forEach(link => {
   });
 });
 
-/* ═══════════════════════════════════════════════════
-   5. HERO ANIMATIONS (GSAP)
-   ═══════════════════════════════════════════════════ */
 function initHeroAnimations() {
   const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
 
@@ -428,11 +411,6 @@ function initHeroAnimations() {
 // Call hero animations immediately since we removed the preloader
 initHeroAnimations();
 
-/* ═══════════════════════════════════════════════════
-   6. SCROLL ANIMATIONS (FRAME-BY-FRAME SCRUBBING)
-   ═══════════════════════════════════════════════════ */
-
-// ── Shared Scrub Configuration ──
 const scrubConfig = {
   duration: 1,
   ease: 'power2.out',
@@ -440,7 +418,6 @@ const scrubConfig = {
   y: 30,
 };
 
-// ── Section Labels ──
 gsap.utils.toArray('.section-label').forEach(label => {
   gsap.fromTo(label, 
     { opacity: 0, y: 30 },
@@ -456,7 +433,6 @@ gsap.utils.toArray('.section-label').forEach(label => {
   );
 });
 
-// ── Section Titles ──
 gsap.utils.toArray('.section-title').forEach(title => {
   gsap.fromTo(title, 
     { opacity: 0, y: 40 },
@@ -472,7 +448,6 @@ gsap.utils.toArray('.section-title').forEach(title => {
   );
 });
 
-// ── About Section ──
 gsap.fromTo('.about-image-wrapper', 
   { opacity: 0, x: -50 },
   {
@@ -499,7 +474,6 @@ gsap.fromTo('.about-content',
   }
 );
 
-// ── Stat Numbers (Scroll Triggered Count) ──
 gsap.utils.toArray('.stat-number').forEach(num => {
   const target = parseInt(num.getAttribute('data-count'));
   ScrollTrigger.create({
@@ -517,7 +491,6 @@ gsap.utils.toArray('.stat-number').forEach(num => {
   });
 });
 
-// ── Skills — Split Layout Scroll Animation ──
 const skillsCards = gsap.utils.toArray('.skills-list-card');
 if (skillsCards.length > 0) {
   skillsCards.forEach((card) => {
@@ -538,7 +511,6 @@ if (skillsCards.length > 0) {
   });
 }
 
-// ── Projects Section — Bento Grid (no horizontal scroll needed) ──
 // Animate each bento card on scroll
 gsap.utils.toArray('.project-bento-card').forEach((card, i) => {
   gsap.fromTo(card,
@@ -559,7 +531,6 @@ gsap.utils.toArray('.project-bento-card').forEach((card, i) => {
   );
 });
 
-// ── Milestone Cards ──
 gsap.utils.toArray('.milestone-card').forEach((card, i) => {
   gsap.fromTo(card, 
     { opacity: 0, y: 40 },
@@ -575,7 +546,6 @@ gsap.utils.toArray('.milestone-card').forEach((card, i) => {
   );
 });
 
-// ── Certificates Section ──
 gsap.fromTo('.certificates-marquee', 
   { opacity: 0, scale: 0.95 },
   {
@@ -589,7 +559,6 @@ gsap.fromTo('.certificates-marquee',
   }
 );
 
-// ── Contact Section ──
 gsap.fromTo('.contact-left', 
   { opacity: 0, x: -40 },
   {
@@ -616,7 +585,6 @@ gsap.fromTo('.contact-right',
   }
 );
 
-// ── 3D Sphere Parallax Drift ──
 gsap.to(sphere.position, {
   y: -2,
   scrollTrigger: {
@@ -637,14 +605,8 @@ gsap.to(stars.rotation, {
   }
 });
 
-/* ═══════════════════════════════════════════════════
-   7. PROJECT 3D SCENES — ALL THREE PROJECTS
-   ═══════════════════════════════════════════════════ */
 // Project 3D scenes removed to match 2D minimalist professional aesthetic
 
-/* ═══════════════════════════════════════════════════
-   8. CONTACT FORM
-   ═══════════════════════════════════════════════════ */
 const contactForm = document.getElementById('contact-form');
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -666,9 +628,6 @@ contactForm.addEventListener('submit', (e) => {
   }, 3000);
 });
 
-/* ═══════════════════════════════════════════════════
-   9. SMOOTH SCROLL
-   ═══════════════════════════════════════════════════ */
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();

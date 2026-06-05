@@ -1,9 +1,5 @@
-/* ═══════════════════════════════════════════════════════════
-   BHAVIK SHARMA — PORTFOLIO 
-   Design System: Dark Futuristic / Violet Noir
-   ═══════════════════════════════════════════════════════════ */
 
-/* ── CSS Custom Properties ── */
+
 :root {
   /* Core palette — deep indigo to violet noir */
   --bg-primary: #0a0a0f;
@@ -39,7 +35,6 @@
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* ── Reset & Base ── */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -63,7 +58,6 @@ html {
   border-radius: 3px;
 }
 
-/* ── Lenis Smooth Scroll Setup ── */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -99,8 +93,6 @@ section {
   z-index: 2;
 }
 
-
-
 ::selection {
   background: var(--accent-primary);
   color: white;
@@ -122,7 +114,6 @@ img {
   padding: 0 clamp(20px, 4vw, 48px);
 }
 
-/* ── Preloader ── */
 #preloader {
   position: fixed;
   inset: 0;
@@ -167,7 +158,6 @@ img {
   100% { transform: translateY(0); opacity: 1; }
 }
 
-/* ── Custom Cursor ── */
 .cursor {
   position: fixed;
   width: 8px;
@@ -212,7 +202,6 @@ body:hover #bg-glow {
   opacity: 1;
 }
 
-/* ── 3D Canvas ── */
 #hero-canvas {
   position: fixed;
   top: 0;
@@ -225,7 +214,6 @@ body:hover #bg-glow {
   -webkit-mask-image: linear-gradient(to bottom, white 60%, transparent 100%);
 }
 
-/* ── Navigation ── */
 .navbar {
   position: fixed;
   top: 0;
@@ -244,7 +232,7 @@ body:hover #bg-glow {
   background: rgba(10, 10, 15, 0.8);
   backdrop-filter: blur(20px) saturate(1.6);
   -webkit-backdrop-filter: blur(20px) saturate(1.6);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: none;
 }
 
 .nav-logo {
@@ -368,7 +356,6 @@ body:hover #bg-glow {
   color: var(--text-primary);
 }
 
-/* ── Hero Section ── */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -398,8 +385,7 @@ body:hover #bg-glow {
   font-size: 13px;
   color: var(--text-secondary);
   margin-bottom: 32px;
-  
-  
+
 }
 
 .hero-tag-dot {
@@ -441,8 +427,7 @@ body:hover #bg-glow {
   font-weight: 300;
   color: var(--text-secondary);
   margin-bottom: 20px;
-  
-  
+
   letter-spacing: -0.5px;
 }
 
@@ -461,16 +446,14 @@ body:hover #bg-glow {
   max-width: 520px;
   line-height: 1.7;
   margin-bottom: 40px;
-  
-  
+
 }
 
 .hero-cta {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  
-  
+
 }
 
 /* Buttons */
@@ -574,7 +557,6 @@ body:hover #bg-glow {
   color: var(--text-muted);
 }
 
-/* ── Sections ── */
 .section {
   position: relative;
   padding: var(--section-padding) 0;
@@ -647,7 +629,6 @@ body:hover #bg-glow {
   -webkit-text-fill-color: transparent;
 }
 
-/* ── About Section ── */
 .about-grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -766,7 +747,6 @@ body:hover #bg-glow {
   margin-top: 6px;
 }
 
-/* ── Skills — Split Layout (aBetterLou Style) ── */
 .skills-split-layout {
   display: flex;
   justify-content: space-between;
@@ -884,7 +864,6 @@ body:hover #bg-glow {
   }
 }
 
-/* ── Projects Section — Premium Bento Grid ── */
 .projects-bento-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1105,7 +1084,6 @@ body:hover #bg-glow {
 .project-name { font-family: var(--font-heading); font-size: clamp(22px, 2.5vw, 28px); font-weight: 600; margin-bottom: 16px; }
 .project-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
 
-/* ── AURA Project Card — Special Accents ── */
 .project-bento-aura .project-bento-image img {
   opacity: 0.85;
   object-position: center top;
@@ -1147,7 +1125,6 @@ body:hover #bg-glow {
   transform: translate(3px, -3px);
 }
 
-/* ── Journey / Milestones ── */
 .milestones-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1308,7 +1285,6 @@ body:hover #bg-glow {
   border: 1px solid rgba(124, 58, 237, 0.12);
 }
 
-/* ── Contact Section ── */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1444,7 +1420,6 @@ body:hover #bg-glow {
   margin-top: 8px;
 }
 
-/* ── Footer ── */
 .footer {
   position: relative;
   z-index: 1;
@@ -1482,13 +1457,6 @@ body:hover #bg-glow {
   color: var(--text-muted);
 }
 
-/* ═══════════════════════════════════════════════════
-   RESPONSIVE — All breakpoints
-   ═══════════════════════════════════════════════════ */
-
-
-
-/* ── Tablet — 1024px ── */
 @media (max-width: 1024px) {
   :root {
     --section-padding: clamp(60px, 10vh, 120px);
@@ -1504,7 +1472,6 @@ body:hover #bg-glow {
   }
 }
 
-/* ── Tablet — 968px (nav collapse, layout switch) ── */
 @media (max-width: 968px) {
   /* Nav */
   .nav-links { display: none; }
@@ -1555,7 +1522,6 @@ body:hover #bg-glow {
   .hero-ctas { justify-content: center; }
 }
 
-/* ── Mobile — 768px ── */
 @media (max-width: 768px) {
   :root {
     --section-padding: clamp(48px, 8vh, 80px);
@@ -1637,7 +1603,6 @@ body:hover #bg-glow {
   .cert-avatar-wrapper { width: 44px; height: 44px; }
 }
 
-/* ── Mobile — 480px ── */
 @media (max-width: 480px) {
   :root {
     --section-padding: clamp(40px, 7vh, 64px);
@@ -1698,7 +1663,6 @@ body:hover #bg-glow {
   .cert-name { font-size: 16px; }
 }
 
-/* ── Small mobile — 360px ── */
 @media (max-width: 360px) {
   .hero-title { font-size: 28px; }
   .section-title { font-size: 24px; }
@@ -1708,7 +1672,6 @@ body:hover #bg-glow {
   .cert-card.moonpay-style { width: 260px; padding: 16px; }
 }
 
-/* ── Touch devices: disable hover effects that need a pointer ── */
 @media (hover: none) and (pointer: coarse) {
   #cursor { display: none !important; }
   body { cursor: auto !important; }
@@ -1724,12 +1687,10 @@ body:hover #bg-glow {
   .nav-link, .contact-link { min-height: 44px; }
 }
 
-/* ── High-DPI / Retina: sharper rendering ── */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .about-image-frame { image-rendering: -webkit-optimize-contrast; }
 }
 
-/* ── Reduced motion: respect OS preference ── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -1741,13 +1702,11 @@ body:hover #bg-glow {
   .preloader-char { animation: none; opacity: 1; }
 }
 
-/* ── Utility Animations ── */
 .reveal {
   opacity: 1 !important;
   transform: none !important;
 }
 
-/* ── Certificates Section ── */
 .certificates {
   padding-bottom: 0; 
 }
