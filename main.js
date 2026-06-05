@@ -2,6 +2,20 @@ import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+window.addEventListener('error', function(e) {
+  console.error('GLOBAL ERROR:', e.message, e.filename, e.lineno, e.colno, e.error);
+  const div = document.createElement('div');
+  div.style.position = 'fixed';
+  div.style.top = '0';
+  div.style.left = '0';
+  div.style.zIndex = '999999';
+  div.style.background = 'red';
+  div.style.color = 'white';
+  div.style.padding = '20px';
+  div.innerText = 'ERROR: ' + e.message + ' at line ' + e.lineno;
+  document.body.appendChild(div);
+});
+
 gsap.registerPlugin(ScrollTrigger);
 
 ScrollTrigger.config({ 
