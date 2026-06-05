@@ -90,7 +90,6 @@ body {
   font-family: 'Outfit', sans-serif;
   overflow-x: hidden;
   line-height: 1.6;
-  cursor: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -100,15 +99,7 @@ section {
   z-index: 2;
 }
 
-/* Noise overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-}
+
 
 ::selection {
   background: var(--accent-primary);
@@ -179,23 +170,13 @@ img {
 /* ── Custom Cursor ── */
 .cursor {
   position: fixed;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background: var(--accent-secondary);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, background 0.3s;
-  mix-blend-mode: difference;
-}
-
-.cursor.hover {
-  width: 32px;
-  height: 32px;
-  background: transparent;
-  border: 2px solid var(--accent-secondary);
-  box-shadow: 0 0 15px var(--accent-glow);
 }
 
 /* Google-Style Immersive Background Aura */
@@ -785,240 +766,34 @@ body:hover #bg-glow {
   margin-top: 6px;
 }
 
-/* ── Skills Section ── */
-.skills-sticky-layout {
-  display: flex;
-  gap: 60px;
-  position: relative;
-  align-items: flex-start;
-  padding-bottom: 20vh;
-}
-
-.skills-sticky-left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 80vh; /* Huge gap for scroll-jacking effect */
-  padding-top: 10vh;
-  padding-bottom: 50vh;
-  position: relative;
-  z-index: 2;
-}
-
-.skills-sticky-right {
-  flex: 1;
-  position: sticky;
-  top: 20vh;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-/* ── iPhone 15 Pro Mockup (Real Proportions: 393x852 → 1:2.168) ── */
-.sticky-visual-graphic {
-  /* Real iPhone 15 Pro: 71.5mm x 146.6mm display area, bezel ~5mm */
-  width: 260px;
-  height: 564px; /* 260 * 2.168 ≈ 564 */
-  background: #0d0d1a;
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
-  border-radius: 48px; /* iPhone 15 Pro corner radius */
-  box-shadow:
-    0 0 0 6px #1a1a2e,
-    0 0 0 7px rgba(255,255,255,0.05),
-    0 30px 80px rgba(0, 0, 0, 0.7),
-    0 0 60px rgba(124, 58, 237, 0.15),
-    inset 0 0 0 1px rgba(255,255,255,0.04);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* ── Skills — Horizontal Scroll Cards ── */
+.skills-horizontal-section {
   position: relative;
   overflow: hidden;
-  transition: all 0.6s var(--ease-out-expo);
 }
 
-/* Dynamic Island */
-.sticky-visual-graphic::before {
-  content: '';
-  position: absolute;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 88px;
-  height: 26px;
-  background: #000;
-  border-radius: 20px;
-  z-index: 10;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.05);
-}
-
-/* Side button (volume/power) — decorative */
-.sticky-visual-graphic::after {
-  content: '';
-  position: absolute;
-  top: 100px;
-  right: -3px;
-  width: 3px;
-  height: 60px;
-  background: linear-gradient(to bottom, #333, #555, #333);
-  border-radius: 0 3px 3px 0;
-  z-index: 10;
-}
-
-/* Home bar (iPhone-style bottom indicator) */
-.iphone-home-bar {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 5px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 3px;
-  z-index: 10;
-}
-
-/* Screen content area */
-.iphone-screen {
-  position: absolute;
-  inset: 0;
-  border-radius: 48px;
-  overflow: hidden;
+.skills-horizontal-track {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end; /* text at bottom */
-  padding-bottom: 40px;
+  gap: 32px;
+  padding: 40px 0;
+  width: max-content;
 }
 
-/* Full-bleed background image that fills UPPER portion of phone screen */
-.graphic-icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 68%; /* occupies upper ~68% of phone screen */
-  width: 100%;
-  border-radius: 0;
-  background: transparent;
-  border: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  transition: opacity 0.6s var(--ease-out-expo);
-}
-
-/* Image fills the constrained area, centred */
-.graphic-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  mix-blend-mode: screen;
-  filter: brightness(1.1) saturate(1.25) contrast(1.1);
-  transition: transform 0.7s var(--ease-out-expo), opacity 0.4s;
-  display: block;
-  border-radius: 0;
-}
-
-/* Gradient overlay — fades from transparent into dark exactly where image ends */
-.iphone-screen-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 50%,
-    rgba(8, 5, 20, 0.6) 65%,
-    rgba(8, 5, 20, 0.95) 72%,
-    rgba(8, 5, 20, 1.0) 100%
-  );
-  border-radius: 48px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* Text sits on top of everything */
-.iphone-screen-text {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  padding: 0 20px 8px;
-}
-
-.graphic-icon svg {
-  width: 50px;
-  height: 50px;
-  stroke: var(--accent-secondary);
-}
-
-.graphic-title {
-  font-family: var(--font-heading);
-  font-size: 18px;
-  font-weight: 700;
-  text-align: center;
-  color: #ffffff;
-  transition: all 0.4s var(--ease-out-expo);
-  letter-spacing: -0.3px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
-  margin: 0;
-}
-
-.graphic-subtitle {
-  font-size: 10px;
-  color: var(--accent-secondary);
-  text-align: center;
-  margin-top: 5px;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  transition: all 0.4s var(--ease-out-expo);
-  opacity: 0.85;
-}
-
-.graphic-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 160px;
-  height: 160px;
-  background: var(--accent-primary);
-  filter: blur(80px);
-  opacity: 0.2;
-  z-index: -1;
-  border-radius: 50%;
-  transition: background 0.5s ease;
-}
-
-.skill-scroll-block {
-  width: 100%;
+.skills-h-card {
+  width: 380px;
+  flex-shrink: 0;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 28px;
-  padding: 40px;
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  position: relative;
   overflow: hidden;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s, filter 0.5s;
-  opacity: 0.2; /* Initially dimmed */
-  filter: blur(4px);
-  transform: scale(0.95);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
-.skill-scroll-block.active {
-  opacity: 1;
-  filter: blur(0px);
-  transform: scale(1);
-  border-color: rgba(124, 58, 237, 0.4);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(124, 58, 237, 0.15);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.skill-scroll-block::before {
+.skills-h-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -1030,8 +805,19 @@ body:hover #bg-glow {
   transition: opacity 0.4s;
 }
 
-.skill-scroll-block.active::before {
+.skills-h-card:hover {
+  border-color: rgba(124, 58, 237, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(124, 58, 237, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-6px);
+}
+
+.skills-h-card:hover::before {
   opacity: 1;
+}
+
+.skills-h-card-inner {
+  padding: 40px;
 }
 
 .skill-icon {
@@ -1702,14 +1488,7 @@ body:hover #bg-glow {
    RESPONSIVE — All breakpoints
    ═══════════════════════════════════════════════════ */
 
-/* ── Performance: GPU-composited animations only ── */
-.project-bento-card,
-.milestone-card,
-.skill-scroll-block,
-.cert-card {
-  will-change: transform;
-  contain: layout style;
-}
+
 
 /* ── Tablet — 1024px ── */
 @media (max-width: 1024px) {
@@ -1722,13 +1501,8 @@ body:hover #bg-glow {
     font-size: clamp(52px, 8vw, 88px);
   }
 
-  .sticky-visual-graphic {
-    width: 220px;
-    height: 460px;
-  }
-
-  .skills-sticky-right {
-    min-width: 240px;
+  .skills-h-card {
+    width: 340px;
   }
 }
 
@@ -1749,34 +1523,8 @@ body:hover #bg-glow {
   }
 
   /* Skills */
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-  .skills-sticky-layout {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 20px;
-    gap: 24px;
-  }
-  .skills-sticky-left {
-    gap: 24px; /* Tighter gap so all boxes fit easily */
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  .skills-sticky-right {
-    display: none; /* Hide phone mockup on tablet/mobile as requested */
-  }
-  .skill-scroll-block {
-    position: relative;
-    /* Force active state so they don't require scrolling to center to be read */
-    opacity: 1 !important;
-    filter: blur(0px) !important;
-    transform: scale(1) !important;
-    background: rgba(20, 20, 40, 0.6);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(124, 58, 237, 0.2);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  .skills-h-card {
+    width: 300px;
   }
 
   /* Projects */
@@ -1848,9 +1596,11 @@ body:hover #bg-glow {
   .stat-label { font-size: 12px; }
 
   /* Skills */
-  .skill-card {
-    padding: 24px;
-    border-radius: 20px;
+  .skills-h-card {
+    width: 280px;
+  }
+  .skills-h-card-inner {
+    padding: 28px;
   }
   .skill-title { font-size: 20px; }
   .skill-desc { font-size: 15px; }
@@ -1929,6 +1679,14 @@ body:hover #bg-glow {
   .project-bento-featured .project-bento-image { height: 180px; }
   .project-bento-image { min-height: 160px; }
 
+  /* Skills */
+  .skills-h-card {
+    width: 260px;
+  }
+  .skills-h-card-inner {
+    padding: 24px;
+  }
+
   /* Skill tags: wrap nicely */
   .skill-tags { gap: 8px; }
   .tag { font-size: 11px; padding: 4px 12px; }
@@ -1961,7 +1719,7 @@ body:hover #bg-glow {
   .project-bento-card:hover { transform: none; }
   .milestone-card:hover { transform: none; }
   .cert-card.moonpay-style:hover { transform: none; }
-  .skill-scroll-block:hover { background: transparent; }
+  .skills-h-card:hover { transform: none; }
 
   /* Larger tap targets */
   .btn-primary, .btn-secondary,

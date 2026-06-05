@@ -31,10 +31,17 @@ gsap.ticker.lagSmoothing(0);
    1. PRELOADER
    ═══════════════════════════════════════════════════ */
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('preloader').classList.add('hidden');
+  const preloader = document.getElementById('preloader');
+  let dismissed = false;
+  function dismissPreloader() {
+    if (dismissed) return;
+    dismissed = true;
+    preloader.classList.add('hidden');
     initHeroAnimations();
-  }, 1500);
+  }
+  setTimeout(dismissPreloader, 800);
+  // Hard fallback — guarantees preloader ALWAYS dismisses
+  setTimeout(dismissPreloader, 2000);
 });
 
 /* ═══════════════════════════════════════════════════
@@ -52,9 +59,9 @@ document.addEventListener('mousemove', (e) => {
 });
 
 function animateCursor() {
-  // Cursor snaps directly to mouse — zero delay
-  cursorX = mouseX;
-  cursorY = mouseY;
+  // Smooth easing follow — slight lag for premium feel
+  cursorX += (mouseX - cursorX) * 0.15;
+  cursorY += (mouseY - cursorY) * 0.15;
 
   // Background glow follows with a softer, liquid-like lag
   glowX += (mouseX - glowX) * 0.04;
@@ -72,15 +79,6 @@ function animateCursor() {
 }
 animateCursor();
 
-document.querySelectorAll('a, button, .skill-scroll-block, .project-horizontal-card, .milestone-card, .contact-link, .cert-card').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.classList.add('hover');
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.classList.remove('hover');
-  });
-});
-
 /* ═══════════════════════════════════════════════════
    3. THREE.JS — SPACE SPHERE (INFRACORP-STYLE)
    ═══════════════════════════════════════════════════ */
@@ -89,11 +87,11 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
 // ─── Particle Sphere (planet viewed from space) ───
 const sphereRadius = 2.5;
-const sphereParticleCount = 2500;
+const sphereParticleCount = 1200;
 const spherePositions = new Float32Array(sphereParticleCount * 3);
 const sphereColors = new Float32Array(sphereParticleCount * 3);
 const sphereSizes = new Float32Array(sphereParticleCount);
@@ -241,7 +239,7 @@ ring2.rotation.z = -0.3;
 scene.add(ring2);
 
 // ─── Background stars ───
-const starCount = 600;
+const starCount = 300;
 const starPositions = new Float32Array(starCount * 3);
 const starSizes = new Float32Array(starCount);
 for (let i = 0; i < starCount; i++) {
@@ -297,77 +295,7 @@ const glowMat = new THREE.ShaderMaterial({
 const glowMesh = new THREE.Mesh(glowGeo, glowMat);
 scene.add(glowMesh);
 
-// ─── Interactive Background Grid (Infracorp style) ───
-const gridRows = 30;
-const gridCols = 50;
-const gridCount = gridRows * gridCols;
-const gridPositions = new Float32Array(gridCount * 3);
 
-for (let i = 0; i < gridRows; i++) {
-  for (let j = 0; j < gridCols; j++) {
-    const idx = i * gridCols + j;
-    // Spread grid across view
-    gridPositions[idx * 3] = (j - gridCols / 2) * 0.5;
-    gridPositions[idx * 3 + 1] = (i - gridRows / 2) * 0.5;
-    gridPositions[idx * 3 + 2] = -5; // Deep background
-  }
-}
-
-const gridGeo = new THREE.BufferGeometry();
-gridGeo.setAttribute('position', new THREE.BufferAttribute(gridPositions, 3));
-
-const gridMat = new THREE.ShaderMaterial({
-  uniforms: {
-    uMouse: { value: new THREE.Vector2(-1000, -1000) },
-    uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-    uTime: { value: 0 }
-  },
-  vertexShader: `
-    varying vec3 vViewPosition;
-    void main() {
-      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-      vViewPosition = mvPosition.xyz;
-      gl_PointSize = 3.5;
-      gl_Position = projectionMatrix * mvPosition;
-    }
-  `,
-  fragmentShader: `
-    uniform vec2 uMouse;
-    uniform vec2 uResolution;
-    uniform float uTime;
-    varying vec3 vViewPosition;
-
-    void main() {
-      // Use gl_FragCoord for screen space position
-      vec2 screenPos = gl_FragCoord.xy;
-      
-      // Invert Y is not needed with gl_FragCoord if uMouse is already handled, 
-      // but let's check how uMouse is passed. 
-      // gridMat.uniforms.uMouse.value.set(e.clientX, window.innerHeight - e.clientY);
-      // gl_FragCoord.y is 0 at bottom, uMouse.y is also 0 at bottom. So it matches.
-      float dist = distance(screenPos, uMouse);
-      
-      // "Darken" mask: Fades out elements near the cursor
-      // smoothstep(min, max, value) -> 0 if val < min, 1 if val > max
-      float mask = smoothstep(60.0, 180.0, dist);
-      
-      // Base appearance
-      float strength = length(gl_PointCoord - vec2(0.5));
-      if (strength > 0.5) discard;
-      
-      vec3 color = vec3(0.3, 0.6, 1.0); // Electric Blue/Cyan
-      float alpha = 0.25 * mask * (0.7 + 0.3 * sin(uTime * 0.5 + vViewPosition.x));
-      
-      gl_FragColor = vec4(color, alpha);
-    }
-  `,
-  transparent: true,
-  depthWrite: false,
-  blending: THREE.AdditiveBlending
-});
-
-const backgroundGrid = new THREE.Points(gridGeo, gridMat);
-scene.add(backgroundGrid);
 
 // Position sphere to the left like Infracorp
 sphere.position.x = -5;
@@ -382,9 +310,6 @@ let targetRotX = 0, targetRotY = 0;
 document.addEventListener('mousemove', (e) => {
   targetRotX = (e.clientY / window.innerHeight - 0.5) * 0.15;
   targetRotY = (e.clientX / window.innerWidth - 0.5) * 0.15;
-  
-  // Update shader mouse uniform (Invert Y for GLSL)
-  gridMat.uniforms.uMouse.value.set(e.clientX, window.innerHeight - e.clientY);
 });
 
 // Animation loop
@@ -395,7 +320,6 @@ function animate() {
 
   sphereMaterial.uniforms.uTime.value = t;
   glowMat.uniforms.uTime.value = t;
-  gridMat.uniforms.uTime.value = t;
 
   // Slow sphere rotation
   sphere.rotation.y += 0.002;
@@ -422,7 +346,6 @@ window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
-  gridMat.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
 });
 
 // Scroll-based opacity fade
@@ -495,9 +418,9 @@ gsap.utils.toArray('.section-label').forEach(label => {
       opacity: 1, y: 0,
       scrollTrigger: {
         trigger: label,
-        start: 'top 95%',
-        end: 'top 75%',
-        scrub: 1,
+        start: 'top 90%',
+        end: 'top 70%',
+        scrub: 0.5,
       }
     }
   );
@@ -513,7 +436,7 @@ gsap.utils.toArray('.section-title').forEach(title => {
         trigger: title,
         start: 'top 90%',
         end: 'top 70%',
-        scrub: 1,
+        scrub: 0.5,
       }
     }
   );
@@ -564,86 +487,23 @@ gsap.utils.toArray('.stat-number').forEach(num => {
   });
 });
 
-// ── Skills Section (Sticky Scroll) ──
-const skillBlocks = gsap.utils.toArray('.skill-scroll-block');
-const graphicIcon = document.getElementById('graphic-icon');
-const graphicTitle = document.getElementById('graphic-title');
-
-// Define the data for the sticky visual
-const basePath = import.meta.env.BASE_URL;
-
-const skillsData = [
-  {
-    title: 'AI Agent Systems',
-    subtitle: 'Automation',
-    iconSrc: `${basePath}images/ai_skill_glow.webp`,
-    iconAlt: 'AI Agents'
-  },
-  {
-    title: 'Computer Hardware',
-    subtitle: 'Tech Specialist',
-    iconSrc: `${basePath}images/hardware_skill_glow.webp`,
-    iconAlt: 'Hardware'
-  },
-  {
-    title: 'Web & Coding',
-    subtitle: 'Developer',
-    iconSrc: `${basePath}images/web_skill_glow.webp`,
-    iconAlt: 'Web Development'
-  },
-  {
-    title: 'E-Commerce',
-    subtitle: 'Business',
-    iconSrc: `${basePath}images/ecommerce_skill_glow.webp`,
-    iconAlt: 'E-Commerce'
-  }
-];
-
-skillBlocks.forEach((block, index) => {
-  ScrollTrigger.create({
-    trigger: block,
-    start: 'top 50%',
-    end: 'bottom 50%',
-    onEnter: () => activateSkill(index, block),
-    onEnterBack: () => activateSkill(index, block),
-  });
-});
-
-function activateSkill(index, block) {
-  // Reset all blocks
-  skillBlocks.forEach(b => b.classList.remove('active'));
-  block.classList.add('active');
-  
-  const iconImg = document.getElementById('graphic-icon-img');
-  const graphicSubtitle = document.getElementById('graphic-subtitle');
-  const screenText = document.querySelector('.iphone-screen-text');
-  
-  // Fade image out, swap, fade back in
-  if (iconImg) {
-    gsap.to(iconImg, {
-      opacity: 0,
-      scale: 1.04,
-      duration: 0.22,
-      ease: 'power2.in',
-      onComplete: () => {
-        iconImg.src = skillsData[index].iconSrc;
-        iconImg.alt = skillsData[index].iconAlt;
-        gsap.to(iconImg, { opacity: 1, scale: 1, duration: 0.55, ease: 'power3.out' });
-      }
-    });
-  }
-  
-  // Fade text out, swap text, fade back in
-  if (screenText) {
-    gsap.to(screenText, {
-      opacity: 0,
-      y: 8,
-      duration: 0.18,
-      ease: 'power2.in',
-      onComplete: () => {
-        graphicTitle.innerText = skillsData[index].title;
-        if (graphicSubtitle) graphicSubtitle.innerText = skillsData[index].subtitle;
-        gsap.to(screenText, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' });
+// ── Skills — Horizontal Scroll ──
+const skillsHorizontal = document.getElementById('skills-horizontal');
+if (skillsHorizontal) {
+  const track = skillsHorizontal.querySelector('.skills-horizontal-track');
+  if (track) {
+    const totalScroll = track.scrollWidth - skillsHorizontal.offsetWidth;
+    gsap.to(track, {
+      x: () => -totalScroll,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: skillsHorizontal,
+        start: 'top top',
+        end: () => `+=${totalScroll}`,
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        anticipatePin: 1,
       }
     });
   }
@@ -681,7 +541,7 @@ gsap.utils.toArray('.milestone-card').forEach((card, i) => {
         trigger: card,
         start: 'top 95%',
         end: 'top 80%',
-        scrub: 1,
+        scrub: 0.5,
       }
     }
   );
