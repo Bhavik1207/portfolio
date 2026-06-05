@@ -772,26 +772,9 @@ body:hover #bg-glow {
   overflow: hidden;
 }
 
-.skills-horizontal-track {
-  display: flex;
-  gap: 32px;
-  padding: 40px 0;
-  width: max-content;
-}
+.skills-horizontal-track { position: relative; width: 100%; height: 500px; display: flex; justify-content: center; align-items: center; }
 
-.skills-h-card {
-  width: 380px;
-  flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 28px;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-}
+.skills-h-card { width: 400px; max-width: 90vw; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 28px; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); overflow: hidden; position: absolute; transform-origin: center center; }
 
 .skills-h-card::before {
   content: '';

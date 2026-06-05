@@ -514,28 +514,51 @@ gsap.utils.toArray('.stat-number').forEach(num => {
   });
 });
 
-// ── Skills — Horizontal Scroll ──
+// ── Skills — Stacking Cards Animation ──
 const skillsHorizontal = document.getElementById('skills-horizontal');
 if (skillsHorizontal) {
-  const track = skillsHorizontal.querySelector('.skills-horizontal-track');
-  if (track) {
-    const totalScroll = track.scrollWidth - skillsHorizontal.offsetWidth;
-    gsap.to(track, {
-      x: () => -totalScroll,
-      ease: 'none',
+  const cards = gsap.utils.toArray('.skills-h-card');
+  if (cards.length > 0) {
+    // Set initial state for progressive enhancement fallback: 
+    // If JS runs, hide all cards except the first one to the right
+    gsap.set(cards, { xPercent: 120, opacity: 0 });
+    gsap.set(cards[0], { xPercent: 0, opacity: 1 });
+
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: skillsHorizontal,
-        start: 'top top',
-        end: () => `+=${totalScroll}`,
+        start: 'top 15%', // Pin when section is near top
+        end: () => `+=${cards.length * 800}`, // Long scroll for smoothness
         pin: true,
         scrub: 1,
-        invalidateOnRefresh: true,
-        anticipatePin: 1,
+        anticipatePin: 1
+      }
+    });
+
+    cards.forEach((card, i) => {
+      if (i === 0) return; // First card is already in place
+      
+      // Animate current card in
+      tl.to(card, {
+        xPercent: 0,
+        opacity: 1,
+        ease: 'power2.out',
+        duration: 1
+      });
+      
+      // Scale down and fade out previous cards to create depth
+      for (let j = 0; j < i; j++) {
+        tl.to(cards[j], {
+          scale: 1 - (i - j) * 0.05,
+          opacity: 1 - (i - j) * 0.3,
+          yPercent: -(i - j) * 2, // Push slightly up
+          ease: 'power2.out',
+          duration: 1
+        }, "<");
       }
     });
   }
 }
-
 
 // ── Projects Section — Bento Grid (no horizontal scroll needed) ──
 // Animate each bento card on scroll
